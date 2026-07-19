@@ -256,7 +256,7 @@
   <section>
     <h2>Planting Site Map</h2>
     <div class="map-container">
-      <img src="promenaded.svg" alt="Map of The Promenade planting site showing the 2 fenced areas and tree positions" />
+      <img src="promenade.svg" alt="Map of The Promenade planting site showing the 2 fenced areas and tree positions" />
       <p class="map-caption">
         Map of The Promenade at Miner's Point – Stewart &amp; Duimovich family planting.
       </p>
@@ -274,30 +274,21 @@
         <option value="apple">Apple</option>
         <option value="apricot">Apricot</option>
         <option value="asian-pear">Asian Pear</option>
-        <option value="cherry">Cherry</option>
-        <option value="fig">Fig</option>
-        <option value="lemon">Lemon</option>
-        <option value="lime">Lime</option>
+        <option value="sweet-cherry">Sweet Cherry</option>
+        <option value="tart-cherry">Tart Cherry</option>
+        <option value="shrub-cherry">Shrub Cherry</option>
         <option value="mulberry">Mulberry</option>
         <option value="nectarine">Nectarine</option>
-        <option value="olive">Olive</option>
         <option value="peach">Peach</option>
-        <option value="persimmon">Persimmon</option>
         <option value="plum">Plum</option>
-        <option value="pomegranate">Pomegranate</option>
         <option value="pear">Pear</option>
-        <option value="quince">Quince</option>
       </select>
 
-      <label for="bed-filter" style="margin-left:1rem;">Filter by bed:</label>
+      <label for="bed-filter" style="margin-left:1rem;">Filter by section:</label>
       <select id="bed-filter" onchange="filterTrees()">
         <option value="all">All beds</option>
-        <option value="North-West">North-West</option>
-        <option value="North-Center">North-Center</option>
-        <option value="North-East">North-East</option>
-        <option value="South-West">South-West</option>
-        <option value="South-Center">South-Center</option>
-        <option value="South-East">South-East</option>
+        <option value="West">West</option>
+        <option value="East">East</option>
       </select>
     </div>
 
@@ -327,36 +318,33 @@
 <script>
   // ── Tree data ──────────────────────────────────────────────────────────────
   const trees = [
-    { id:"T1",  type:"apple",       color:"color-apple",      variety:"Fuji",              bed:"North-West",   planted:2019, height:"~18 ft",  notes:"High-chill variety. Heavy bearer in autumn." },
-    { id:"T2",  type:"apple",       color:"color-apple",      variety:"Gravenstein",       bed:"North-West",   planted:2019, height:"~20 ft",  notes:"Heirloom summer apple. Excellent for cider and sauce." },
-    { id:"T3",  type:"pear",        color:"color-pear",       variety:"Bartlett",          bed:"North-West",   planted:2020, height:"~22 ft",  notes:"Classic summer pear. Ripens July–August." },
-    { id:"T4",  type:"pear",        color:"color-pear",       variety:"Bosc",              bed:"North-West",   planted:2020, height:"~20 ft",  notes:"Firm, aromatic pear. Good storage variety." },
-    { id:"T5",  type:"cherry",      color:"color-cherry",     variety:"Bing",              bed:"North-West",   planted:2021, height:"~16 ft",  notes:"Sweet dark cherry. Ripens late May–June." },
-    { id:"T6",  type:"peach",       color:"color-peach",      variety:"Redhaven",          bed:"North-Center", planted:2019, height:"~15 ft",  notes:"Freestone peach. Mid-season ripener, very productive." },
-    { id:"T7",  type:"peach",       color:"color-peach",      variety:"Elberta",           bed:"North-Center", planted:2019, height:"~18 ft",  notes:"Classic late-season freestone. Excellent fresh or preserved." },
-    { id:"T8",  type:"plum",        color:"color-plum",       variety:"Santa Rosa",        bed:"North-Center", planted:2020, height:"~15 ft",  notes:"Most popular California plum. Tart skin, sweet flesh." },
-    { id:"T9",  type:"apricot",     color:"color-apricot",    variety:"Moorpark",          bed:"North-Center", planted:2021, height:"~16 ft",  notes:"Rich, classic apricot flavour. Ripens June." },
-    { id:"T10", type:"apricot",     color:"color-apricot",    variety:"Blenheim (Royal)",  bed:"North-Center", planted:2021, height:"~18 ft",  notes:"Prized Bay Area heirloom. Exceptionally flavourful when tree-ripened." },
-    { id:"T11", type:"fig",         color:"color-fig",        variety:"Brown Turkey",      bed:"North-East",   planted:2019, height:"~14 ft",  notes:"Reliable two-crop fig. Breba crop in June; main crop in August." },
-    { id:"T12", type:"fig",         color:"color-fig",        variety:"Black Mission",     bed:"North-East",   planted:2019, height:"~16 ft",  notes:"Iconic California fig. Sweet, rich flavour; purple-black skin." },
-    { id:"T13", type:"mulberry",    color:"color-mulberry",   variety:"Illinois Everbearing (Red)", bed:"North-East", planted:2020, height:"~25 ft", notes:"Long fruiting season June–August. Fruit beloved by birds and people." },
-    { id:"T14", type:"quince",      color:"color-quince",     variety:"Pineapple Quince",  bed:"North-East",   planted:2021, height:"~12 ft",  notes:"Fragrant, yellow fruit. Best cooked into jams and membrillo." },
-    { id:"T15", type:"asian-pear",  color:"color-asian-pear", variety:"20th Century (Nijisseiki)", bed:"North-East", planted:2020, height:"~18 ft", notes:"Crisp, juicy and sweet. Harvest in August–September." },
-    { id:"T16", type:"lemon",       color:"color-lemon",      variety:"Eureka",            bed:"South-West",   planted:2020, height:"~12 ft",  notes:"Year-round producer. Standard supermarket lemon." },
-    { id:"T17", type:"lemon",       color:"color-lemon",      variety:"Meyer",             bed:"South-West",   planted:2020, height:"~10 ft",  notes:"Sweeter, thin-skinned lemon. Heavy winter crop." },
-    { id:"T18", type:"persimmon",   color:"color-persimmon",  variety:"Fuyu",              bed:"South-West",   planted:2021, height:"~15 ft",  notes:"Non-astringent; eaten crisp like an apple. Ornamental in autumn." },
-    { id:"T19", type:"apple",       color:"color-apple",      variety:"Pink Lady (Cripps Pink)", bed:"South-West", planted:2022, height:"~14 ft", notes:"Late-season apple. Excellent fresh eating; good keeper." },
-    { id:"T20", type:"cherry",      color:"color-cherry",     variety:"Rainier",           bed:"South-West",   planted:2022, height:"~14 ft",  notes:"Yellow-blush sweet cherry. Premium flavour; ripens slightly after Bing." },
-    { id:"T21", type:"plum",        color:"color-plum",       variety:"Elephant Heart",    bed:"South-Center", planted:2020, height:"~15 ft",  notes:"Large, heart-shaped dark plum. Rich, sweet-tart flesh." },
-    { id:"T22", type:"nectarine",   color:"color-nectarine",  variety:"Fantasia",          bed:"South-Center", planted:2021, height:"~14 ft",  notes:"Large, firm freestone nectarine. Vivid red and yellow skin." },
-    { id:"T23", type:"pear",        color:"color-pear",       variety:"D'Anjou",           bed:"South-Center", planted:2020, height:"~20 ft",  notes:"Popular storage pear. Green when ripe; harvest October." },
-    { id:"T24", type:"apple",       color:"color-apple",      variety:"Honeycrisp",        bed:"South-Center", planted:2022, height:"~13 ft",  notes:"Exceptionally crisp and sweet. One of the most popular eating apples." },
-    { id:"T25", type:"pomegranate", color:"color-pomegranate",variety:"Wonderful",         bed:"South-Center", planted:2021, height:"~10 ft",  notes:"Deep-red arils, tangy-sweet juice. Harvest October–November." },
-    { id:"T26", type:"mulberry",    color:"color-mulberry",   variety:"Kokuso White",      bed:"South-East",   planted:2020, height:"~20 ft",  notes:"White mulberry; sweeter and milder than red. Long productive season." },
-    { id:"T27", type:"persimmon",   color:"color-persimmon",  variety:"Hachiya",           bed:"South-East",   planted:2021, height:"~18 ft",  notes:"Astringent until fully soft. Intensely sweet when ripe; great for baking." },
-    { id:"T28", type:"olive",       color:"color-olive",      variety:"Arbequina",         bed:"South-East",   planted:2019, height:"~12 ft",  notes:"Small, flavourful fruiting olive. Ripens November. Cold-hardy variety." },
-    { id:"T29", type:"apple",       color:"color-apple",      variety:"Sierra Beauty",     bed:"South-East",   planted:2022, height:"~14 ft",  notes:"Pacific Coast heirloom. Firm, sweet-tart; excellent fresh or baked." },
-    { id:"T30", type:"lime",        color:"color-lime",       variety:"Persian (Bearss)",  bed:"South-East",   planted:2022, height:"~10 ft",  notes:"Thornless, seedless lime. Prolific producer in warm coastal climates." },
+    { id:"T1",  type:"apple",       color:"color-apple",      variety:"Goldrush",          bed:"West",   planted:2025, height:"~10 ft",  notes:"The GoldRush is a late-season, yellow dessert apple known for its intense, sweet-tart, and spicy flavour." },
+    { id:"T2",  type:"apple",       color:"color-apple",      variety:"Wealthy",           bed:"East",   planted:2024, height:"~10 ft",  notes:"The Wealthy is an American apple cultivar, and was the earliest to thrive in the Minnesota climate." },
+    { id:"T3",  type:"pear",        color:"color-pear",       variety:"Sierra",            bed:"West",   planted:2025, height:"~8 ft",  notes:"Classic summer pear. Ripens July–August." },
+    { id:"T4",  type:"pear",        color:"color-pear",       variety:"Honey Sweet",       bed:"West",   planted:2026, height:"~8 ft",  notes:"Firm, aromatic pear. Good storage variety." },
+    { id:"T5",  type:"sweet-cherry",   color:"color-cherry",     variety:"Sandra Rose",       bed:"West",   planted:2026, height:"~7 ft",  notes:"Sweet dark cherry. Ripens late July." },
+    { id:"T6",  type:"peach",       color:"color-peach",      variety:"Coral Star",        bed:"West", planted:2025, height:"~8 ft",  notes:"Freestone peach. Mid-season ripener, very productive." },
+    { id:"T7",  type:"peach",       color:"color-peach",      variety:"Hardy",             bed:"West", planted:2024, height:"~8 ft",  notes:"Classic late-season freestone. Excellent fresh or preserved." },
+    { id:"T8",  type:"plum",        color:"color-plum",       variety:"Vampire",           bed:"East", planted:2025, height:"~8 ft",  notes:"Most popular California plum. Tart skin, sweet flesh." },
+    { id:"T9",  type:"apricot",     color:"color-apricot",    variety:"Harlayne",          bed:"West", planted:2025, height:"~8 ft",  notes:"Rich, classic apricot flavour. Ripens June." },
+    { id:"T10", type:"apricot",     color:"color-apricot",    variety:"Westcot",  bed:"West", planted:2025, height:"~8 ft",  notes:"Exceptionally flavourful when tree-ripened." },
+    { id:"T11",  type:"apple",       color:"color-apple",      variety:"Wealthy",           bed:"East",   planted:2024, height:"~10 ft",  notes:"The Wealthy is an American apple cultivar, and was the earliest to thrive in the Minnesota climate." },
+    { id:"T13", type:"mulberry",    color:"color-mulberry",   variety:"Italian", bed:"East", planted:2024, height:"~5 ft", notes:"Fruit beloved by birds and people." },
+    { id:"T15", type:"asian-pear",  color:"color-asian-pear", variety:"20th Century (Nijisseiki)", bed:"West", planted:2024, height:"~10 ft", notes:"Crisp, juicy and sweet. Harvest in September/October." },
+    { id:"T19", type:"apple",       color:"color-apple",      variety:"Liberty", bed:"South-West", planted:2026, height:"~5 ft", notes:"Late-season apple. Excellent fresh eating; good keeper." },
+    { id:"T20", type:"tart-cherry",   color:"color-cherry",     variety:"Montmorency",           bed:"West",   planted:2024, height:"~14 ft",  notes:"Yellow-blush sweet cherry. Premium flavour; ripens slightly after Bing." },
+    { id:"T21", type:"plum",        color:"color-plum",       variety:"BlackIce",    bed:"West", planted:2026, height:"~8 ft",  notes:"Large, heart-shaped dark plum. Rich, sweet-tart flesh." },
+    { id:"T22", type:"nectarine",   color:"color-nectarine",  variety:"Hardired",          bed:"West", planted:2024, height:"~8 ft",  notes:"Large, firm freestone nectarine. Vivid red and yellow skin." },
+    { id:"T23", type:"asian-pear",        color:"color-asian-pear", variety:"Mishirasu",           bed:"West", planted:2026, height:"~6 ft",  notes:"Green when ripe; harvest October." },
+    { id:"T24", type:"apple",       color:"color-apple",      variety:"Ginger Gold",        bed:"West", planted:2025, height:"~13 ft",  notes:"Exceptionally crisp and sweet. One of the most popular eating apples." },
+    { id:"T26", type:"mulberry",    color:"color-mulberry",   variety:"Red",      bed:"East",   planted:2024, height:"~6 ft",  notes:"Native red mulberry; sweet and mild, native species at risk." },
+    { id:"T29", type:"apple",       color:"color-apple",      variety:"Goodland",     bed:"West",   planted:2024, height:"~5 ft",  notes:"Firm, sweet-tart; excellent fresh or baked." },
+    { id:"T30", type:"apple",        color:"color-apple",     variety:"Wolf River",  bed:"West",   planted:2024, height:"~5 ft",  notes:"Very large tasty apples" },
+    { id:"T31", type:"apple",        color:"color-apple",     variety:"Sundance",  bed:"West",   planted:2026, height:"~5 ft",  notes:"Very large tasty apples" },
+    { id:"T32",  type:"sweet-cherry",   color:"color-cherry",     variety:"Benton",       bed:"West",   planted:2025, height:"~7 ft",  notes:"Sweet dark cherry. Ripens late July." },
+    { id:"T33",  type:"sweet-cherry",   color:"color-cherry",     variety:"Black Pearl",       bed:"West",   planted:2026, height:"~7 ft",  notes:"Sweet dark cherry. Ripens late July." },
+    { id:"T34", type:"apricot",     color:"color-apricot",    variety:"Precious",  bed:"West", planted:2025, height:"~8 ft",  notes:"Exceptionally flavourful when tree-ripened." },
+    { id:"T35", type:"apricot",     color:"color-apricot",    variety:"Seedling",  bed:"East", planted:2025, height:"~6 ft",  notes:"Exceptionally flavourful when tree-ripened." },
   ];
 
   // ── Render cards ──────────────────────────────────────────────────────────
